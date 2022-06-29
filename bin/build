@@ -1,0 +1,5 @@
+#!/bin/bash
+
+bin/run "bin/clean"
+bin/run "bin/docker-build"
+# bin/run "bin/install"

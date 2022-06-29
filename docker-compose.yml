@@ -1,7 +1,7 @@
 version: "3.5"
 
 services:
-  db:
+  postgres:
     image: postgres
     volumes:
       - postgres:/var/lib/postgresql/data
@@ -17,11 +17,13 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      DATABASE_NAME: postgres
+      DATABASE_USER: postgres
+      DATABASE_PASS: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
     depends_on:
-      - db
+      - postgres
 
 volumes:
   postgres:
