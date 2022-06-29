@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'koth.apps.KothConfig',
     'polls.apps.PollsConfig',
     'rest_framework',
+    'django_filters',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
