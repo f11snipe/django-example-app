@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# bin/run "bin/rebuild"
+# bin/run "bin/install"
+bin/run "docker-compose run -l traefik.enable=false --rm app tar -xzvf src/koth/fixtures/fix.tgz -C src/koth/fixtures"
+bin/run "docker-compose run -l traefik.enable=false --rm app python src/manage.py migrate"
+bin/run "docker-compose run -l traefik.enable=false --rm app python src/manage.py loaddata boxes games players gameplayers"
