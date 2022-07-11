@@ -11,6 +11,20 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
         model = Player
         fields = ('level', 'avatar', 'username', 'country')
 
+class PlayerDetailSerializer(serializers.HyperlinkedModelSerializer):
+    num_games = serializers.IntegerField()
+    avg_rank = serializers.FloatField()
+    avg_score = serializers.FloatField()
+    total_score = serializers.IntegerField()
+    avg_king = serializers.FloatField()
+    total_king = serializers.IntegerField()
+    avg_flags = serializers.FloatField()
+    total_flags = serializers.IntegerField()
+    class Meta:
+        model = Player
+        fields = ('level', 'avatar', 'username', 'country', 'num_games', 'avg_rank', 'avg_score', 'total_score', 'avg_king', 'total_king', 'avg_flags', 'total_flags')
+
+
 class GameSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Game

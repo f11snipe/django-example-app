@@ -20,6 +20,10 @@ class Player(models.Model):
     username = models.CharField(max_length=255)
     # TODO: ENUM?
     country = models.CharField(max_length=3)
+    # TODO: Methods/fields for metrics
+    # player.gameplayer_set.count() -- Total games played
+    #  users = Player.objects.filter(username='F11snipe').annotate(num_games=Count('gameplayer'))
+    # Player.objects.filter(username='F11snipe').annotate(num_games=Count('gameplayer'), total_king=Sum('gameplayer__king'), avg_king=Avg('gameplayer__king'))
     def __str__(self):
         return self.username
 
