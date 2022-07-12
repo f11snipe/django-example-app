@@ -26,10 +26,16 @@ SECRET_KEY = 'django-insecure-dq_59i#mmra&l4%khfeszf^aa%mpt*yuzjv6nwysgcqwto8c$t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    'koth-api.ngrok.io'
+]
 
 CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:8000',
     'http://localhost:19006',
+    'https://koth.ngrok.io'
 ]
 
 # Application definition
