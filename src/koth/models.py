@@ -41,6 +41,7 @@ class Game(models.Model):
     king_changes = models.IntegerField(default=0)
     resets = models.IntegerField(default=0)
     creator_name = models.CharField(max_length=255, default='unknown')
+    players = models.ManyToManyField(Player, through='GamePlayer')
     # creator = models.ForeignKey(Player, on_delete=models.CASCADE, related_name='creator')
     # winner = models.ForeignKey(Player, on_delete=models.CASCADE, related_name='winner')
     # chartData = ??
@@ -50,7 +51,7 @@ class Game(models.Model):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.started_at <= now
     def __str__(self):
-        return f"Game #{self.thmid} [{self.id}]"
+        return f"Game #{self.id}"
 
 
 class GamePlayer(models.Model):
