@@ -59,13 +59,13 @@ class PlayerViewSet(viewsets.ModelViewSet):
     search_fields = ('username')
 
 class GameViewSet(viewsets.ModelViewSet):
-    queryset = Game.objects.all()
+    queryset = Game.objects.prefetch_related('gameplayers').all()
     serializer_class = GameSerializer
     filter_backends = (filters.QueryParameterValidationFilter, filters.OrderingFilter,
                         django_filters.DjangoFilterBackend, bfilters.SearchFilter,)
     filterset_class = GameFilter
     # filterset_fields = ['status', 'game_type', 'king_found', 'king_changes', 'resets', 'creator_name', 'started_at', 'finished_at']
-    search_fields = ('creator_name', 'box__os', 'box__title')
+    search_fields = ('creator_name', 'box__os', 'box__title', 'players__username')
 
 class GamePlayerViewSet(viewsets.ModelViewSet):
     queryset = GamePlayer.objects.all()

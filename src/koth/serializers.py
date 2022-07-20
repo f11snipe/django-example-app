@@ -24,14 +24,20 @@ class PlayerDetailSerializer(serializers.HyperlinkedModelSerializer):
         model = Player
         fields = ('level', 'avatar', 'username', 'country', 'num_games', 'avg_rank', 'avg_score', 'total_score', 'avg_king', 'total_king', 'avg_flags', 'total_flags')
 
-
-class GameSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Game
-        fields = ('box', 'started_at', 'finished_at', 'first_hacked', 'status', 'game_type', 'king_found', 'king_changes', 'resets', 'creator_name')
-
 class GamePlayerSerializer(serializers.HyperlinkedModelSerializer):
+    player = PlayerSerializer(many=False, read_only=True)
+
     class Meta:
         model = GamePlayer
+        # depth = 1
         fields = ('game', 'player', 'score', 'flags', 'rank', 'king')
 
+
+
+class GameSerializer(serializers.HyperlinkedModelSerializer):
+    gameplayers = GamePlayerSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Game
+        depth = 1
+        fields = ('box', 'gameplayers', 'started_at', 'finished_at', 'first_hacked', 'status', 'game_type', 'king_found', 'king_changes', 'resets', 'creator_name')

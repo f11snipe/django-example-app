@@ -55,7 +55,7 @@ class Game(models.Model):
 
 
 class GamePlayer(models.Model):
-    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, related_name='gameplayers', on_delete=models.CASCADE)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
     flags = models.IntegerField(default=0)
