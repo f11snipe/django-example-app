@@ -17,6 +17,7 @@ class GameFilter(rfilters.FilterSet):
             'box__title': ['exact', 'iexact', 'icontains'],
             'players__country': ['exact', 'iexact'],
             'players__username': ['exact', 'iexact'],
+            'gameplayers__score': ['exact', 'lt', 'lte', 'gt', 'gte'],
             'status': ['exact', 'iexact'],
             'game_type': ['exact', 'iexact'],
             'started_at': ['lte', 'gte'],
@@ -35,7 +36,7 @@ class BoxViewSet(viewsets.ModelViewSet):
     #     'title': ('icontains', 'iexact', 'contains')
     # }
     filterset_fields = ['os', 'title']
-    search_fields = ('os', 'title',)
+    search_fields = ['os', 'title']
 
 class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.annotate(
@@ -56,7 +57,7 @@ class PlayerViewSet(viewsets.ModelViewSet):
     #     'username': ('icontains', 'iexact', 'contains')
     # }
     filterset_fields = ['level', 'username', 'country']
-    search_fields = ('username')
+    search_fields = ['username']
 
 class GameViewSet(viewsets.ModelViewSet):
     queryset = Game.objects.prefetch_related('gameplayers').all()
@@ -65,7 +66,7 @@ class GameViewSet(viewsets.ModelViewSet):
                         django_filters.DjangoFilterBackend, bfilters.SearchFilter,)
     filterset_class = GameFilter
     # filterset_fields = ['status', 'game_type', 'king_found', 'king_changes', 'resets', 'creator_name', 'started_at', 'finished_at']
-    search_fields = ('creator_name', 'box__os', 'box__title', 'players__username')
+    search_fields = ['creator_name', 'box__os', 'box__title', 'players__username']
 
 class GamePlayerViewSet(viewsets.ModelViewSet):
     queryset = GamePlayer.objects.all()
