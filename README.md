@@ -1,6 +1,16 @@
 # django-example-app
 Example app using python + django framework
 
+### Quickstart
+
+```bash
+# Build local containers and import fixtures data
+./bin/setup
+
+# Run local dev api (port 8000)
+./bin/start
+```
+
 ### Metrics ideas
 
 ```
