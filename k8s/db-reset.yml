@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-reset
+spec:
+  template:
+    spec:
+      containers:
+        - name: koth-api
+          imagePullPolicy: IfNotPresent
+          image: f11snipe/koth-api:latest
+          command: ['/app/bin/db-reset']
+          env:
+            - name: DATABASE_NAME
+              value: postgres
+
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: user
+
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: password
+
+            - name: POSTGRES_NAME
+              value: postgres
+
+            # - name: DJANGO_SETTINGS_MODULE
+            #   value: 'backend.settings.minikube'
+
+      restartPolicy: Never
+  backoffLimit: 5

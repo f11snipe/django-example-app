@@ -16,10 +16,37 @@ spec:
     spec:
       containers:
         - name: django-kube
-#          imagePullPolicy: Always
           imagePullPolicy: IfNotPresent
-          #image: f11snipe/koth-api:latest
-          image: nginx
-          #command: ["python", "./src/manage.py", "runserver", "0.0.0.0:8000"]
+          image: f11snipe/koth-api:latest
+          command: ["python", "./src/manage.py", "runserver", "0.0.0.0:8000"]
           ports:
-          - containerPort: 80
+          - containerPort: 8000
+          env:
+            - name: SECRET_KEY
+              value: "my-secret-key"
+
+            - name: POSTGRES_NAME
+              value: postgres
+
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: user
+
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: password
+
+    # I'm not sure that we need these volumes, but they were included in the tutorial referenced at the beginning of this guide.
+
+          # volumeMounts:
+          #   - name: postgres-volume-mount
+          #     mountPath: /var/lib/busybox
+
+      volumes:
+        - name: postgres-volume-mount
+          persistentVolumeClaim:
+            claimName: postgres-pvc

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# bin/run "bin/rebuild"
+# bin/run "bin/install"
+env
+tar -xzvf src/koth/fixtures/fix.tgz -C src/koth/fixtures
+python src/manage.py migrate
+python src/manage.py loaddata boxes games players gameplayers
