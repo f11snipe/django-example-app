@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
+    '192.168.49.2',
+    'api.koth',
     'koth-api.ngrok.io'
 ]
 
