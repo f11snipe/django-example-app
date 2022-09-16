@@ -11,6 +11,12 @@ Example app using python + django framework
 ./bin/start
 ```
 
+### Links
+
+- https://rafed.github.io/devra/posts/cloud/kubernetes/getting-started-with-kubernetes-using-minikube/
+- https://dev.to/briancaffey/setting-up-a-django-project-in-kubernetes-with-minikube-3k8i
+
+
 ### Metrics ideas
 
 ```

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: koth-api
+  labels:
+    app: koth-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: koth-api
+  template:
+    metadata:
+      labels:
+        app: koth-api
+    spec:
+      containers:
+        - name: django-kube
+#          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
+          #image: f11snipe/koth-api:latest
+          image: nginx
+          #command: ["python", "./src/manage.py", "runserver", "0.0.0.0:8000"]
+          ports:
+          - containerPort: 80

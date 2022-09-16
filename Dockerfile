@@ -8,3 +8,4 @@ WORKDIR $BASE_DIR
 COPY requirements.txt $BASE_DIR/
 RUN pip install -r requirements.txt
 COPY . $BASE_DIR/
+CMD ["python", "src/manage.py", "runserver", "0.0.0.0:8000"]
