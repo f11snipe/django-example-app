@@ -11,6 +11,13 @@ Example app using python + django framework
 ./bin/start
 ```
 
+### Notes
+
+```bash
+# Start minikube with host mount
+minikube start --mount-string "${HOME}/dev/f11snipe:/usr/local/src/f11snipe" --mount
+```
+
 ### Links
 
 - https://rafed.github.io/devra/posts/cloud/kubernetes/getting-started-with-kubernetes-using-minikube/

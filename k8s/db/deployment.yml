@@ -18,16 +18,10 @@ spec:
           image: postgres:13
           env:
             - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-credentials
-                  key: user
+              value: postgres
 
             - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-credentials
-                  key: password
+              value: postgres
 
           ports:
             - containerPort: 5432
